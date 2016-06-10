@@ -1,0 +1,92 @@
+<!-- Validation failure messages -->
+<% if @role.errors.any? %>
+<% @role.errors.full_messages.each do |message| %>
+<div class="alert alert-dismissable alert-danger">
+  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+  <%= message %>
+</div>
+<% end %>
+<% end %>
+
+<div class="page-header">
+  <h3>Add Role</h3>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <form action="/create_role" method="post">
+      <!-- Hidden input for authenticity token to protect from forgery -->
+      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+      <!-- Label and input for title -->
+      <div class="form-group">
+        <label for="title" class="control-label">
+          Title
+        </label>
+
+        <input type="text" id="title" name="title" placeholder="Title" class="form-control" value="<%= @role.title %>">
+      </div>
+
+      <!-- Label and input for time_commitment -->
+      <div class="form-group">
+        <label for="time_commitment" class="control-label">
+          Time commitment (Hours per Week)
+        </label>
+
+        <input type="text" id="time_commitment" name="time_commitment" placeholder="Time commitment" class="form-control" value="<%= @role.time_commitment %>">
+      </div>
+
+      <!-- Label and input for description -->
+      <div class="form-group">
+        <label for="description" class="control-label">
+          Description
+        </label>
+
+        <input type="text" id="description" name="description" placeholder="Description" class="form-control" value="<%= @role.description %>">
+      </div>
+
+      <!-- Label and input for available -->
+      <div class="form-group">
+        <label for="available" class="control-label">
+          Roles Available
+        </label>
+
+        <input type="text" id="available" name="available" placeholder="Available" class="form-control" value="<%= @role.available %>">
+      </div>
+
+      <!-- Label and input for eligibility -->
+      <div class="form-group">
+        <label for="eligibility" class="control-label">
+          Eligibility
+        </label>
+
+        <!-- <input type="text" id="eligibility" name="eligibility" placeholder="Eligibility" class="form-control" value="<%= @role.eligibility %>"> -->
+        <select name="user[role_id]">
+          <option value="">Please select</option>
+          <option value="1">First year</option>
+          <option value="2">Second year</option>
+          <option value="3">Either</option>
+        </select>
+      </div>
+
+      <!-- Label and input for club_id -->
+      <div class="form-group">
+        <label for="club_id" class="control-label">
+          Club
+        </label>
+
+        <%= select_tag(:club_id, options_from_collection_for_select(Club.order("name ASC"), :id, :name, @role.club_id), :class => "form-control") %>
+
+        <p class="help-block">
+          <a href="/clubs/new">or add a new club</a>
+        </p>
+      </div>
+
+      <button class="btn btn-success">
+        Create Role
+      </button>
+      or
+      <a href="/roles">Cancel</a>
+    </form>
+  </div>
+</div>

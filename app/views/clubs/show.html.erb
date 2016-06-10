@@ -1,0 +1,39 @@
+<div class="page-header">
+  <h3>Club #<%= @club.id %></h3>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <dl class="dl-horizontal">
+      <dt>Name</dt>
+      <dd><%= @club.name %></dd>
+
+      <dt>Category</dt>
+      <dd><%= @club.category.name %></dd>
+
+      <dt>Roles</dt>
+      <dd>
+        <ul class="list-group">
+          <% @club.roles.each do |role| %>
+          <li class="list-group-item">
+            <a href="/roles/<%= role.id %>">
+              <%= role.title %>
+            </a>
+          </li>
+          <% end %>
+        </dl>
+      </dd>
+
+        <div class="btn-group btn-group-justified">
+          <a href="/clubs" class="btn btn-primary">
+            Back
+          </a>
+          <a href="/clubs/<%= @club.id %>/edit" class="btn btn-warning">
+            Edit
+          </a>
+          <a href="/delete_club/<%= @club.id %>" class="btn btn-danger" rel="nofollow">
+            Delete
+          </a>
+        </div>
+      </div>
+    </div>

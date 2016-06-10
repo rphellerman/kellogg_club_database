@@ -1,0 +1,59 @@
+<div class="page-header">
+  <h3>Category #<%= @category.name %></h3>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <dl class="dl-horizontal">
+
+      <dt>Name</dt>
+      <dd><%= @category.name %></dd>
+
+      <dt>Clubs</dt>
+     <dd>
+       <ul class="list-group">
+       <% @category.clubs.each do |club| %>
+         <li class="list-group-item">
+           <a href="/clubs/<%= club.id %>">
+             <%= club.name %>
+           </a>
+         </li>
+       <% end %>
+     </ul>
+   </dd>
+
+      <!-- <dt>Clubs</dt>
+      <dd>
+        <ul class="list-group">
+          <li class="list-group-item">
+            <!-- <a href="/movies/14">
+              Inception (2010) -->
+            <!-- </a> -->
+          <!-- </li>
+          <li class="list-group-item"> -->
+            <!-- <a href="/movies/36">
+              Memento (2000)
+            </a> -->
+          <!-- </li>
+          <li class="list-group-item">
+            <form action="/create_movie" method="post">
+            </form>
+          </li>
+        </ul>
+      </dd> --> -->
+
+    </dl>
+
+    <div class="btn-group btn-group-justified">
+      <a href="/categories" class="btn btn-primary">
+        Back
+      </a>
+      <a href="/categories/<%= @category.id %>/edit" class="btn btn-warning">
+        Edit
+      </a>
+      <a href="/delete_category/<%= @category.id %>" class="btn btn-danger" rel="nofollow">
+        Delete
+      </a>
+    </div>
+  </div>
+</div>
